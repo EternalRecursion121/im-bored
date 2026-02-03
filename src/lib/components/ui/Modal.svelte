@@ -48,13 +48,13 @@
 		aria-modal="true"
 		aria-labelledby={title ? 'modal-title' : undefined}
 	>
-		<div class="bg-[#18181b] rounded-lg shadow-2xl w-full {sizeStyles[size]} max-h-[90vh] flex flex-col border border-zinc-800">
+		<div class="bg-[--bg-tertiary] rounded-lg shadow-2xl w-full {sizeStyles[size]} max-h-[90vh] flex flex-col border border-[--border-primary]">
 			{#if title}
-				<div class="flex items-center justify-between px-5 py-4 border-b border-zinc-800">
-					<h2 id="modal-title" class="text-base font-medium text-zinc-100">{title}</h2>
+				<div class="flex items-center justify-between px-5 py-4 border-b border-[--border-primary]">
+					<h2 id="modal-title" class="text-base font-medium text-[--text-primary]">{title}</h2>
 					<button
 						type="button"
-						class="text-zinc-500 hover:text-zinc-300 transition-colors"
+						class="text-[--text-muted] hover:text-[--text-secondary] transition-colors"
 						onclick={close}
 						aria-label="Close modal"
 					>
@@ -75,7 +75,7 @@
 			</div>
 
 			{#if footer}
-				<div class="px-5 py-4 border-t border-zinc-800 bg-[#111113] rounded-b-lg">
+				<div class="px-5 py-4 border-t border-[--border-primary] bg-[--bg-secondary] rounded-b-lg">
 					{@render footer()}
 				</div>
 			{/if}

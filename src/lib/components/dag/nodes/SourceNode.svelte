@@ -17,15 +17,15 @@
 	const statusColor = $derived(() => {
 		switch (source.status) {
 			case StreamStatus.Active:
-				return 'bg-emerald-500';
+				return 'bg-[#9ece6a]';
 			case StreamStatus.Fetching:
-				return 'bg-amber-500';
+				return 'bg-[#e0af68]';
 			case StreamStatus.Paused:
-				return 'bg-zinc-500';
+				return 'bg-[#565f89]';
 			case StreamStatus.Error:
-				return 'bg-red-500';
+				return 'bg-[#f7768e]';
 			default:
-				return 'bg-zinc-500';
+				return 'bg-[#565f89]';
 		}
 	});
 
@@ -47,7 +47,7 @@
 	statusColor={statusColor()}
 >
 	{#if feedUrl}
-		<div class="text-xs text-zinc-500 truncate max-w-[150px] font-mono" title={feedUrl}>
+		<div class="text-xs text-[#565f89] truncate max-w-[150px] font-mono" title={feedUrl}>
 			{feedUrl}
 		</div>
 	{/if}

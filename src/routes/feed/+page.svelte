@@ -153,9 +153,16 @@
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 	<div class="flex items-center justify-between mb-6">
-		<div>
-			<h1 class="text-xl font-semibold text-zinc-100">Your Feed</h1>
-			<p class="text-zinc-500 text-sm">Content from your personalized algorithm</p>
+		<div class="flex items-center gap-3">
+			<div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: rgba(125, 207, 255, 0.15);">
+				<svg class="w-5 h-5" style="color: #7dcfff;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+				</svg>
+			</div>
+			<div>
+				<h1 class="text-xl font-semibold text-[--text-primary]">Your Feed</h1>
+				<p class="text-[--text-muted] text-sm">Content from your personalized algorithm</p>
+			</div>
 		</div>
 
 		<div class="flex items-center gap-3">
@@ -178,14 +185,14 @@
 	</div>
 
 	{#if streams.sources.length === 0}
-		<div class="text-center py-16">
-			<div class="w-16 h-16 bg-zinc-800 rounded-xl flex items-center justify-center mx-auto mb-4">
-				<svg class="w-8 h-8 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+		<div class="text-center py-16 bg-[--bg-tertiary] rounded-lg border border-[--border-primary]">
+			<div class="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: rgba(125, 207, 255, 0.15);">
+				<svg class="w-8 h-8" style="color: #7dcfff;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
 					<path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
 				</svg>
 			</div>
-			<h2 class="text-lg font-medium text-zinc-200 mb-2">No Sources Yet</h2>
-			<p class="text-zinc-500 text-sm mb-5 max-w-md mx-auto">
+			<h2 class="text-lg font-medium text-[--text-primary] mb-2">No Sources Yet</h2>
+			<p class="text-[--text-muted] text-sm mb-5 max-w-md mx-auto">
 				Add some sources to start seeing content in your feed.
 			</p>
 			<a href="/sources">

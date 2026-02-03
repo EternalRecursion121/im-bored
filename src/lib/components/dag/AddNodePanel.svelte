@@ -107,22 +107,22 @@
 		{#each transformTypes as transform}
 			<button
 				type="button"
-				class="w-full p-3 text-left border border-zinc-700 rounded-md hover:border-blue-500 hover:bg-blue-950/30 transition-colors"
+				class="w-full p-3 text-left border border-[--border-primary] rounded-md hover:border-[--accent-primary] hover:bg-[--accent-primary]/10 transition-colors"
 				onclick={() => handleAddTransform(transform.value)}
 			>
-				<div class="font-medium text-zinc-100 text-sm">{transform.label}</div>
-				<div class="text-xs text-zinc-500">{transform.description}</div>
+				<div class="font-medium text-[--text-primary] text-sm">{transform.label}</div>
+				<div class="text-xs text-[--text-muted]">{transform.description}</div>
 			</button>
 		{/each}
 
-		<div class="pt-4 border-t border-zinc-700 mt-4">
-			<div class="text-xs text-zinc-500 mb-2">AI-Powered (Coming Soon)</div>
+		<div class="pt-4 border-t border-[--border-primary] mt-4">
+			<div class="text-xs text-[--text-muted] mb-2">AI-Powered (Coming Soon)</div>
 			<div class="grid grid-cols-2 gap-2">
-				<div class="p-3 border border-zinc-800 rounded-md bg-zinc-800/50 opacity-50">
-					<div class="font-medium text-zinc-500 text-xs">AI Summarizer</div>
+				<div class="p-3 border border-[--border-primary] rounded-md bg-[--bg-elevated]/50 opacity-50">
+					<div class="font-medium text-[--text-muted] text-xs">AI Summarizer</div>
 				</div>
-				<div class="p-3 border border-zinc-800 rounded-md bg-zinc-800/50 opacity-50">
-					<div class="font-medium text-zinc-500 text-xs">AI Tagger</div>
+				<div class="p-3 border border-[--border-primary] rounded-md bg-[--bg-elevated]/50 opacity-50">
+					<div class="font-medium text-[--text-muted] text-xs">AI Tagger</div>
 				</div>
 			</div>
 		</div>

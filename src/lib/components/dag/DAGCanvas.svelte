@@ -19,10 +19,8 @@
 		nodes: DAGNode[];
 		edges: DAGEdge[];
 		onnodeschange?: (nodes: DAGNode[]) => void;
-		onedgeschange?: (edges: DAGEdge[]) => void;
 		onconnect?: (sourceId: StreamId, targetId: StreamId) => void;
 		onnodeclick?: (nodeId: string) => void;
-		onnodedoubleclick?: (nodeId: string) => void;
 		onpaneclick?: () => void;
 		class?: string;
 	}
@@ -31,10 +29,8 @@
 		nodes,
 		edges,
 		onnodeschange,
-		onedgeschange,
 		onconnect,
 		onnodeclick,
-		onnodedoubleclick,
 		onpaneclick,
 		class: className = ''
 	}: Props = $props();
@@ -46,28 +42,30 @@
 		output: OutputNode as unknown as NodeTypes[string]
 	};
 
-	// Convert our DAG nodes to Svelte Flow nodes
-	const flowNodes = $derived<Node[]>(
-		nodes.map((node) => ({
+	// Convert nodes to SvelteFlow format
+	let flowNodes = $state<Node[]>([]);
+	let flowEdges = $state<Edge[]>([]);
+
+	$effect(() => {
+		flowNodes = nodes.map((node) => ({
 			id: node.id,
 			type: node.type,
-			position: node.position,
-			data: node.data as unknown as Record<string, unknown>,
-			selectable: node.selectable,
-			deletable: node.deletable
-		}))
-	);
+			position: { x: node.position.x, y: node.position.y },
+			data: { ...node.data },
+			selectable: true,
+			deletable: true
+		}));
+	});
 
-	// Convert our DAG edges to Svelte Flow edges
-	const flowEdges = $derived<Edge[]>(
-		edges.map((edge) => ({
+	$effect(() => {
+		flowEdges = edges.map((edge) => ({
 			id: edge.id,
 			source: edge.source,
 			target: edge.target,
 			type: 'smoothstep',
 			animated: edge.animated ?? false
-		}))
-	);
+		}));
+	});
 
 	function handleConnect(connection: Connection) {
 		if (connection.source && connection.target) {
@@ -75,17 +73,16 @@
 		}
 	}
 
-	function handleNodeClick({ node }: { node: Node; event: MouseEvent | TouchEvent }) {
-		onnodeclick?.(node.id);
+	function handleNodeClick(event: { node: Node }) {
+		onnodeclick?.(event.node.id);
 	}
 
-	function handleNodeDragStop({ targetNode, nodes: draggedNodes }: { targetNode: Node | null; nodes: Node[]; event: MouseEvent | TouchEvent }) {
-		// Update positions after drag
-		if (draggedNodes.length > 0) {
+	function handleNodeDragStop(event: { nodes: Node[] }) {
+		if (event.nodes.length > 0) {
 			const updatedNodes = nodes.map((node) => {
-				const draggedNode = draggedNodes.find((n) => n.id === node.id);
+				const draggedNode = event.nodes.find((n) => n.id === node.id);
 				if (draggedNode) {
-					return { ...node, position: draggedNode.position };
+					return { ...node, position: { x: draggedNode.position.x, y: draggedNode.position.y } };
 				}
 				return node;
 			});
@@ -109,24 +106,30 @@
 		onpaneclick={handlePaneClick}
 		fitView
 		snapGrid={[15, 15]}
+		minZoom={0.1}
+		maxZoom={2}
 		defaultEdgeOptions={{
 			type: 'smoothstep',
-			style: 'stroke-width: 2; stroke: #52525b;'
+			style: 'stroke-width: 2; stroke: #3b4261;'
 		}}
 	>
-		<Background gap={15} color="#27272a" />
+		<Background gap={15} color="#292e42" />
 		<Controls />
-		<MiniMap
-			nodeStrokeWidth={3}
-			zoomable
-			pannable
-		/>
+		<MiniMap nodeStrokeWidth={3} zoomable pannable />
 	</SvelteFlow>
 </div>
 
 <style>
 	:global(.svelte-flow) {
-		background-color: #0a0a0b;
+		background-color: #1a1b26 !important;
+	}
+
+	:global(.svelte-flow__renderer) {
+		background-color: #1a1b26 !important;
+	}
+
+	:global(.svelte-flow__pane) {
+		background-color: #1a1b26 !important;
 	}
 
 	:global(.svelte-flow__node) {
@@ -134,55 +137,40 @@
 	}
 
 	:global(.svelte-flow__edge-path) {
-		stroke: #52525b;
+		stroke: #3b4261;
 		stroke-width: 2;
 	}
 
 	:global(.svelte-flow__edge.selected .svelte-flow__edge-path) {
-		stroke: #3b82f6;
+		stroke: #7aa2f7;
 	}
 
 	:global(.svelte-flow__handle) {
-		width: 10px;
-		height: 10px;
+		width: 12px;
+		height: 12px;
 		border-radius: 50%;
-		border: 2px solid #18181b;
-	}
-
-	:global(.svelte-flow__handle-left) {
-		left: -5px;
-	}
-
-	:global(.svelte-flow__handle-right) {
-		right: -5px;
+		border: 2px solid #1a1b26;
 	}
 
 	:global(.svelte-flow__minimap) {
-		background-color: #18181b;
+		background-color: #1f2335;
 		border-radius: 6px;
-		overflow: hidden;
-		border: 1px solid #27272a;
-	}
-
-	:global(.svelte-flow__minimap-mask) {
-		fill: rgba(0, 0, 0, 0.6);
+		border: 1px solid #292e42;
 	}
 
 	:global(.svelte-flow__controls) {
 		border-radius: 6px;
-		overflow: hidden;
-		border: 1px solid #27272a;
+		border: 1px solid #292e42;
 	}
 
 	:global(.svelte-flow__controls-button) {
-		background-color: #18181b;
-		border-bottom: 1px solid #27272a;
-		color: #a1a1aa;
+		background-color: #1f2335;
+		border-bottom: 1px solid #292e42;
+		color: #a9b1d6;
 	}
 
 	:global(.svelte-flow__controls-button:hover) {
-		background-color: #27272a;
-		color: #fafafa;
+		background-color: #292e42;
 	}
 
 	:global(.svelte-flow__controls-button svg) {

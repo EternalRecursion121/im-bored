@@ -65,7 +65,7 @@
 
 <Modal bind:open {title} size="md" onclose={handleCancel}>
 	<div class="space-y-4">
-		<p class="text-sm text-zinc-400">
+		<p class="text-sm text-[--text-muted]">
 			Help us understand your preference (select all that apply):
 		</p>
 
@@ -76,9 +76,9 @@
 					class="p-3 text-left border rounded-md transition-all
 						{selectedReasons.includes(reason.value)
 							? sentiment === FeedbackSentiment.Like
-								? 'border-emerald-500 bg-emerald-950/50 text-emerald-400'
-								: 'border-red-500 bg-red-950/50 text-red-400'
-							: 'border-zinc-700 hover:border-zinc-600 hover:bg-zinc-800 text-zinc-300'}"
+								? 'border-[--success] bg-[--success]/20 text-[--success]'
+								: 'border-[--error] bg-[--error]/20 text-[--error]'
+							: 'border-[--border-primary] hover:border-[--border-secondary] hover:bg-[--bg-elevated] text-[--text-secondary]'}"
 					onclick={() => toggleReason(reason.value)}
 				>
 					<span class="text-sm font-medium">{reason.label}</span>
@@ -87,15 +87,15 @@
 		</div>
 
 		<div>
-			<label for="feedback-comment" class="block text-sm font-medium text-zinc-300 mb-1.5">
+			<label for="feedback-comment" class="block text-sm font-medium text-[--text-secondary] mb-1.5">
 				Additional comments (optional)
 			</label>
 			<textarea
 				id="feedback-comment"
 				bind:value={comment}
 				rows="3"
-				class="w-full px-3 py-2 border border-zinc-700 rounded-md bg-[#111113] text-zinc-100 placeholder-zinc-600
-					focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+				class="w-full px-3 py-2 border border-[--border-primary] rounded-md bg-[--bg-secondary] text-[--text-primary] placeholder-[--text-muted]
+					focus:outline-none focus:ring-2 focus:ring-[--accent-primary] focus:border-[--accent-primary]"
 				placeholder="Tell us more..."
 			></textarea>
 		</div>

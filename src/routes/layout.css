@@ -1,31 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import 'tailwindcss';
 
+@theme {
+	--color-bg-primary: #1a1b26;
+	--color-bg-secondary: #16161e;
+	--color-bg-tertiary: #1f2335;
+	--color-bg-elevated: #292e42;
+}
+
 :root {
-	--bg-primary: #0a0a0b;
-	--bg-secondary: #111113;
-	--bg-tertiary: #18181b;
-	--bg-elevated: #1f1f23;
-	--border-primary: #27272a;
-	--border-secondary: #3f3f46;
-	--text-primary: #fafafa;
-	--text-secondary: #a1a1aa;
-	--text-muted: #71717a;
-	--accent-primary: #3b82f6;
-	--accent-hover: #2563eb;
-	--success: #22c55e;
-	--error: #ef4444;
-	--warning: #f59e0b;
+	--bg-primary: #1a1b26;
+	--bg-secondary: #16161e;
+	--bg-tertiary: #1f2335;
+	--bg-elevated: #292e42;
+	--border-primary: #292e42;
+	--border-secondary: #3b4261;
+	--text-primary: #c0caf5;
+	--text-secondary: #a9b1d6;
+	--text-muted: #565f89;
+	--accent-primary: #7aa2f7;
+	--accent-secondary: #bb9af7;
+	--cyan: #7dcfff;
+	--success: #9ece6a;
+	--error: #f7768e;
+	--warning: #e0af68;
 }
 
-body {
-	background-color: var(--bg-primary);
-	color: var(--text-primary);
-	font-family: 'Inter', system-ui, -apple-system, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
+@layer base {
+	html {
+		background-color: #1a1b26;
+	}
 
-code, pre, .font-mono {
-	font-family: 'JetBrains Mono', ui-monospace, monospace;
+	body {
+		background-color: #1a1b26;
+		color: #c0caf5;
+		font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+		font-weight: 400;
+		letter-spacing: -0.01em;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	h1, h2, h3, h4, .font-display {
+		font-family: 'Space Grotesk', system-ui, sans-serif;
+		letter-spacing: -0.02em;
+	}
+
+	code, pre, .font-mono {
+		font-family: 'JetBrains Mono', ui-monospace, monospace;
+	}
 }

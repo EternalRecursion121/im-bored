@@ -24,13 +24,13 @@
 	}: Props = $props();
 
 	const baseStyles =
-		'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0a0a0b] disabled:opacity-50 disabled:cursor-not-allowed';
+		'inline-flex items-center justify-center font-medium rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[--bg-primary] disabled:opacity-50 disabled:cursor-not-allowed';
 
 	const variantStyles = {
-		primary: 'bg-blue-600 text-white hover:bg-blue-500 focus:ring-blue-500',
-		secondary: 'bg-zinc-800 text-zinc-100 hover:bg-zinc-700 focus:ring-zinc-600 border border-zinc-700',
-		ghost: 'bg-transparent text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200 focus:ring-zinc-600',
-		danger: 'bg-red-600 text-white hover:bg-red-500 focus:ring-red-500'
+		primary: 'bg-[--accent-primary] text-[--bg-primary] hover:brightness-110 focus:ring-[--accent-primary]',
+		secondary: 'bg-[--bg-tertiary] text-[--text-primary] hover:bg-[--bg-elevated] focus:ring-[--border-secondary] border border-[--border-primary]',
+		ghost: 'bg-transparent text-[--text-secondary] hover:bg-[--bg-tertiary] hover:text-[--text-primary] focus:ring-[--border-secondary]',
+		danger: 'bg-[--error] text-[--bg-primary] hover:brightness-110 focus:ring-[--error]'
 	};
 
 	const sizeStyles = {

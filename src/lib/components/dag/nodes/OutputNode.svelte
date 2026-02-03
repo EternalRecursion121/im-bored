@@ -19,9 +19,9 @@
 	itemCount={data.itemCount}
 	showTargetHandle={true}
 	showSourceHandle={false}
-	statusColor="bg-emerald-500"
+	statusColor="bg-[#9ece6a]"
 >
-	<div class="text-xs text-emerald-600">
+	<div class="text-xs text-[#9ece6a]">
 		Your personalized feed
 	</div>
 </BaseNode>

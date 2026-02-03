@@ -50,15 +50,15 @@
 	itemCount={data.itemCount}
 	showTargetHandle={true}
 	showSourceHandle={true}
-	statusColor={isLLM ? 'bg-purple-500' : 'bg-blue-500'}
+	statusColor={isLLM ? 'bg-[#bb9af7]' : 'bg-[#7dcfff]'}
 >
 	{#if configSummary()}
-		<div class="text-xs text-zinc-500">
+		<div class="text-xs text-[#565f89]">
 			{configSummary()}
 		</div>
 	{/if}
 	{#if isLLM}
-		<div class="text-xs text-purple-400 mt-1">
+		<div class="text-xs text-[#bb9af7] mt-1">
 			AI-powered
 		</div>
 	{/if}

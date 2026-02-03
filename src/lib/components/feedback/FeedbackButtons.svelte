@@ -44,8 +44,8 @@
 		type="button"
 		class="{sizeClasses[size]} rounded-md flex items-center justify-center transition-all
 			{sentiment === FeedbackSentiment.Like
-				? 'bg-emerald-900/50 text-emerald-400 scale-105'
-				: 'hover:bg-zinc-800 text-zinc-500 hover:text-emerald-400'}"
+				? 'bg-[--success]/20 text-[--success] scale-105'
+				: 'hover:bg-[--bg-elevated] text-[--text-muted] hover:text-[--success]'}"
 		onclick={handleLikeClick}
 		aria-label="Like"
 		aria-pressed={sentiment === FeedbackSentiment.Like}
@@ -69,8 +69,8 @@
 		type="button"
 		class="{sizeClasses[size]} rounded-md flex items-center justify-center transition-all
 			{sentiment === FeedbackSentiment.Dislike
-				? 'bg-red-900/50 text-red-400 scale-105'
-				: 'hover:bg-zinc-800 text-zinc-500 hover:text-red-400'}"
+				? 'bg-[--error]/20 text-[--error] scale-105'
+				: 'hover:bg-[--bg-elevated] text-[--text-muted] hover:text-[--error]'}"
 		onclick={handleDislikeClick}
 		aria-label="Dislike"
 		aria-pressed={sentiment === FeedbackSentiment.Dislike}
