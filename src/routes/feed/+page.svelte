@@ -152,16 +152,21 @@
 </script>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-	<div class="flex items-center justify-between mb-6">
-		<div class="flex items-center gap-3">
-			<div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: rgba(125, 207, 255, 0.15);">
-				<svg class="w-5 h-5" style="color: #7dcfff;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-				</svg>
+	<!-- Header Section -->
+	<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+		<div class="flex items-center gap-4">
+			<div class="relative">
+				<div class="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-[--cyan]/20 to-[--accent-primary]/20 border border-[--cyan]/20">
+					<svg class="w-6 h-6 text-[--cyan]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+					</svg>
+				</div>
+				<!-- Animated pulse ring -->
+				<div class="absolute inset-0 rounded-xl bg-[--cyan]/10 animate-ping opacity-75" style="animation-duration: 3s;"></div>
 			</div>
 			<div>
-				<h1 class="text-xl font-semibold text-[--text-primary]">Your Feed</h1>
-				<p class="text-[--text-muted] text-sm">Content from your personalized algorithm</p>
+				<h1 class="text-2xl font-display font-semibold text-[--text-primary] tracking-tight">Your Feed</h1>
+				<p class="text-[--text-muted] text-sm mt-0.5">Curated content from your personalized algorithm</p>
 			</div>
 		</div>
 
@@ -179,25 +184,53 @@
 				onclick={loadContent}
 				disabled={content.isLoading || !selectedStreamId}
 			>
-				{content.isLoading ? 'Loading...' : 'Refresh'}
+				<span class="flex items-center gap-2">
+					{#if content.isLoading}
+						<svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+							<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+							<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+						</svg>
+						Loading...
+					{:else}
+						<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+						</svg>
+						Refresh
+					{/if}
+				</span>
 			</Button>
 		</div>
 	</div>
 
 	{#if streams.sources.length === 0}
-		<div class="text-center py-16 bg-[--bg-tertiary] rounded-lg border border-[--border-primary]">
-			<div class="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: rgba(125, 207, 255, 0.15);">
-				<svg class="w-8 h-8" style="color: #7dcfff;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-				</svg>
+		<div class="relative overflow-hidden text-center py-20 bg-gradient-to-b from-[--bg-tertiary] to-[--bg-secondary] rounded-2xl border border-[--border-primary]">
+			<!-- Background decoration -->
+			<div class="absolute inset-0 opacity-30">
+				<div class="absolute top-10 left-10 w-32 h-32 bg-[--cyan]/10 rounded-full blur-3xl"></div>
+				<div class="absolute bottom-10 right-10 w-40 h-40 bg-[--accent-primary]/10 rounded-full blur-3xl"></div>
 			</div>
-			<h2 class="text-lg font-medium text-[--text-primary] mb-2">No Sources Yet</h2>
-			<p class="text-[--text-muted] text-sm mb-5 max-w-md mx-auto">
-				Add some sources to start seeing content in your feed.
-			</p>
-			<a href="/sources">
-				<Button variant="primary">Add Sources</Button>
-			</a>
+
+			<div class="relative">
+				<div class="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 bg-gradient-to-br from-[--cyan]/20 to-[--accent-primary]/20 border border-[--cyan]/20">
+					<svg class="w-10 h-10 text-[--cyan]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+					</svg>
+				</div>
+				<h2 class="text-xl font-display font-semibold text-[--text-primary] mb-3">No Sources Yet</h2>
+				<p class="text-[--text-secondary] text-sm mb-6 max-w-md mx-auto leading-relaxed">
+					Add some content sources to start building your personalized feed. Connect RSS feeds, APIs, or other data streams.
+				</p>
+				<a href="/sources">
+					<Button variant="primary">
+						<span class="flex items-center gap-2">
+							<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+							</svg>
+							Add Sources
+						</span>
+					</Button>
+				</a>
+			</div>
 		</div>
 	{:else}
 		<ContentFeed

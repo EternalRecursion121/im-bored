@@ -39,19 +39,20 @@
 	}
 </script>
 
-<div class="flex items-center gap-1" title="Shift+click for detailed feedback">
+<div class="flex items-center gap-0.5" title="Shift+click for detailed feedback">
 	<button
 		type="button"
-		class="{sizeClasses[size]} rounded-md flex items-center justify-center transition-all
+		class="feedback-btn {sizeClasses[size]} rounded-lg flex items-center justify-center transition-all duration-200
 			{sentiment === FeedbackSentiment.Like
-				? 'bg-[--success]/20 text-[--success] scale-105'
-				: 'hover:bg-[--bg-elevated] text-[--text-muted] hover:text-[--success]'}"
+				? 'bg-[--success]/15 text-[--success] ring-1 ring-[--success]/30'
+				: 'hover:bg-[--success]/10 text-[--text-muted] hover:text-[--success]'}"
 		onclick={handleLikeClick}
 		aria-label="Like"
 		aria-pressed={sentiment === FeedbackSentiment.Like}
 	>
 		<svg
-			class="w-4 h-4"
+			class="w-4 h-4 transition-transform duration-200"
+			class:scale-110={sentiment === FeedbackSentiment.Like}
 			fill={sentiment === FeedbackSentiment.Like ? 'currentColor' : 'none'}
 			viewBox="0 0 24 24"
 			stroke="currentColor"
@@ -67,16 +68,17 @@
 
 	<button
 		type="button"
-		class="{sizeClasses[size]} rounded-md flex items-center justify-center transition-all
+		class="feedback-btn {sizeClasses[size]} rounded-lg flex items-center justify-center transition-all duration-200
 			{sentiment === FeedbackSentiment.Dislike
-				? 'bg-[--error]/20 text-[--error] scale-105'
-				: 'hover:bg-[--bg-elevated] text-[--text-muted] hover:text-[--error]'}"
+				? 'bg-[--error]/15 text-[--error] ring-1 ring-[--error]/30'
+				: 'hover:bg-[--error]/10 text-[--text-muted] hover:text-[--error]'}"
 		onclick={handleDislikeClick}
 		aria-label="Dislike"
 		aria-pressed={sentiment === FeedbackSentiment.Dislike}
 	>
 		<svg
-			class="w-4 h-4"
+			class="w-4 h-4 transition-transform duration-200"
+			class:scale-110={sentiment === FeedbackSentiment.Dislike}
 			fill={sentiment === FeedbackSentiment.Dislike ? 'currentColor' : 'none'}
 			viewBox="0 0 24 24"
 			stroke="currentColor"
@@ -90,3 +92,13 @@
 		</svg>
 	</button>
 </div>
+
+<style>
+	.feedback-btn:active {
+		transform: scale(0.95);
+	}
+
+	.feedback-btn:hover svg {
+		transform: scale(1.1);
+	}
+</style>
